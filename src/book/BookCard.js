@@ -17,10 +17,7 @@ class BookCard extends Component {
 
   onChange = (event) => {
     event.preventDefault();
-    const value = event.target.dataset.shelf;
-    const shelf = value === 'none'
-      ? null
-      : value;
+    const shelf = event.target.dataset.shelf;
     const {book, updateBook} = this.props;
     updateBook(book, shelf);
   }
@@ -30,18 +27,18 @@ class BookCard extends Component {
     const showStatus = this.props.showStatus;
     const shelf = this.props.getShelf(book);
     return (<div className="book">
-      <img src={book.imageLinks.thumbnail} alt={book.title}/>
+      <img src={book.imageLinks && book.imageLinks.thumbnail} alt={book.title}/>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
-        {showStatus && shelf === 'current' && (<p>You are currently reading this book</p>)}
-        {showStatus && shelf === 'want' && (<p>You want to read this book</p>)}
+        {showStatus && shelf === 'currentlyReading' && (<p>You are currently reading this book</p>)}
+        {showStatus && shelf === 'wantToRead' && (<p>You want to read this book</p>)}
         {showStatus && shelf === 'read' && (<p>You have read this book</p>)}
       <div className="book-shelf-changer">
         <br/>Move to ...
-        <br/> {shelf !== 'want' && (<a href="/" onClick={this.onChange} data-shelf='want'>Want to Read</a>)}
+        <br/> {shelf !== 'wantToRead' && (<a href="/" onClick={this.onChange} data-shelf='wantToRead'>Want to Read</a>)}
         {shelf !== 'read' && (<a href="/" onClick={this.onChange} data-shelf='read'>Read</a>)}
-        {shelf !== 'current' && (<a href="/" onClick={this.onChange} data-shelf='want'>Currently Reading</a>)}
-        {shelf !== null && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
+        {shelf !== 'currentlyReading' && (<a href="/" onClick={this.onChange} data-shelf='currentlyReading'>Currently Reading</a>)}
+        {shelf !== 'none' && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
       </div>
     </div>)
   }

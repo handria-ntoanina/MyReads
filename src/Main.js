@@ -15,8 +15,8 @@ class Main extends Component {
       <div className='top-bar'>
         <h1 className='title'>My Reads</h1>
       </div>
-      <Shelf title="Currently Reading" books={this.props.books.filter(book => book.shelf && book.shelf === 'current')} updateBook={this.props.updateBook} getShelf={this.props.getShelf}/>
-      <Shelf title="Want to Read" books={this.props.books.filter(book => book.shelf && book.shelf === 'want')} updateBook={this.props.updateBook} getShelf={this.props.getShelf}/>
+      <Shelf title="Currently Reading" books={this.props.books.filter(book => book.shelf && book.shelf === 'currentlyReading')} updateBook={this.props.updateBook} getShelf={this.props.getShelf}/>
+      <Shelf title="Want to Read" books={this.props.books.filter(book => book.shelf && book.shelf === 'wantToRead')} updateBook={this.props.updateBook} getShelf={this.props.getShelf}/>
       <Shelf title="Read" books={this.props.books.filter(book => book.shelf && book.shelf === 'read')} updateBook={this.props.updateBook} getShelf={this.props.getShelf}/>
       <div className="open-search">
         <Link className='link' to="/search">Add</Link>
