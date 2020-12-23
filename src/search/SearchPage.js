@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from '../book/BooksAPI';
 import BookCard from '../book/BookCard';
+import PropTypes from 'prop-types';
 
 class SearchPage extends Component {
   state = {
     criteria: '',
     result: []
+  }
+
+  static propTypes = {
+    updateBook: PropTypes.func.isRequired
   }
 
   updateCriteria = (criteria) => {
@@ -24,7 +29,7 @@ class SearchPage extends Component {
       this.setState({result: books});
     });
   }
-  
+
   render() {
     /* authors[],id, imageLinks.thumbnail, title */
     return (<div>
@@ -44,13 +49,9 @@ class SearchPage extends Component {
       <div className="search-books-results">
         <h2 className="title2">Search Result</h2>
         <div className="book-container">
-          {this.state.result.map(book => (<BookCard book={book} key={book.id}/>))}
-          {!this.state.result.length && this.state.criteria.trim() && (
-            <p>There are no books matching the criteria {this.state.criteria}</p>
-          )}
-          {!this.state.result.length && !this.state.criteria.trim() && (
-            <p>Start by entering a search criteria</p>
-          )}
+          {this.state.result.map(book => (<BookCard book={book} key={book.id} updateBook={this.props.updateBook}/>))}
+          {!this.state.result.length && this.state.criteria.trim() && (<p>There are no books matching the criteria {this.state.criteria}</p>)}
+          {!this.state.result.length && !this.state.criteria.trim() && (<p>Start by entering a search criteria</p>)}
         </div>
       </div>
     </div>)
