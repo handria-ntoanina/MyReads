@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {SHELVES} from '../ShelfData';
 
 class BookCard extends Component {
   static propTypes = {
@@ -30,15 +31,12 @@ class BookCard extends Component {
       <img src={book.imageLinks && book.imageLinks.thumbnail} alt={book.title}/>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
-        {showStatus && shelf === 'currentlyReading' && (<p>You are currently reading this book</p>)}
-        {showStatus && shelf === 'wantToRead' && (<p>You want to read this book</p>)}
-        {showStatus && shelf === 'read' && (<p>You have read this book</p>)}
+      {SHELVES.map(SHELF => showStatus && shelf === SHELF.id && (<p key={'p' + book.id + SHELF.id}>{SHELF.message}</p>))}
+
       <div className="book-shelf-changer">
         <br/>Move to ...
-        <br/> {shelf !== 'wantToRead' && (<a href="/" onClick={this.onChange} data-shelf='wantToRead'>Want to Read</a>)}
-        {shelf !== 'read' && (<a href="/" onClick={this.onChange} data-shelf='read'>Read</a>)}
-        {shelf !== 'currentlyReading' && (<a href="/" onClick={this.onChange} data-shelf='currentlyReading'>Currently Reading</a>)}
-        {shelf !== 'none' && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
+        <br/> {SHELVES.map(SHELF => shelf !== SHELF.id && (<a key={'a' + book.id + SHELF.id} href="/" onClick={this.onChange} data-shelf={SHELF.id}>{SHELF.title}</a>))}
+        {shelf && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
       </div>
     </div>)
   }
