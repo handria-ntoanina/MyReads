@@ -81,3 +81,80 @@ body {
   border: none;
   outline: none;
 }
+
+.search-books-results {
+  padding: 10px;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 72px;
+  bottom: 10px;
+  /* Background bright*/
+  background: #ffffff;
+  /* floating */
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative ;
+}
+
+.title2 {
+  font: normal normal normal 20px Arial;
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: #005662;
+  border-bottom: 1px solid #005662;
+}
+
+.book img {
+  width: 70px;
+  height: 100px;
+  object-fit: scale-down;
+  display: inline-block;
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.book {
+  width: 159px;
+  height: 212px;
+  text-align: center;
+}
+
+.book-title {
+  //styleName: Body;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #005662;
+}
+
+.book-authors {
+  //styleName: Body;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #4fb3bf;
+}
+
+.shelf {
+  padding: 10px;
+  margin: 1%;
+  float: left;
+  width: 31%;
+  height: 87%;
+  /* Background bright*/
+  background: #ffffff;
+  /* floating */
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
