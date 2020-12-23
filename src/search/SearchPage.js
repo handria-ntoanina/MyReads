@@ -11,7 +11,8 @@ class SearchPage extends Component {
   }
 
   static propTypes = {
-    updateBook: PropTypes.func.isRequired
+    updateBook: PropTypes.func.isRequired,
+    getShelf: PropTypes.func.isRequired
   }
 
   updateCriteria = (criteria) => {
@@ -49,7 +50,7 @@ class SearchPage extends Component {
       <div className="search-books-results">
         <h2 className="title2">Search Result</h2>
         <div className="book-container">
-          {this.state.result.map(book => (<BookCard book={book} key={book.id} updateBook={this.props.updateBook} showNone={false}/>))}
+          {this.state.result.map(book => (<BookCard book={book} key={book.id} updateBook={this.props.updateBook} showNone={false} getShelf={this.props.getShelf} showStatus={true}/>))}
           {!this.state.result.length && this.state.criteria.trim() && (<p>There are no books matching the criteria {this.state.criteria}</p>)}
           {!this.state.result.length && !this.state.criteria.trim() && (<p>Start by entering a search criteria</p>)}
         </div>

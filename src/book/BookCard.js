@@ -5,11 +5,14 @@ class BookCard extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     updateBook: PropTypes.func.isRequired,
-    showNone: PropTypes.bool
+    getShelf: PropTypes.func.isRequired,
+    showNone: PropTypes.bool,
+    showStatus: PropTypes.bool
   }
 
   static defaultProps = {
-    showNone: true
+    showNone: true,
+    showStatus: false
   }
 
   onChange = (event) => {
@@ -24,19 +27,21 @@ class BookCard extends Component {
 
   render() {
     const book = this.props.book;
+    const showStatus = this.props.showStatus;
+    const shelf = this.props.getShelf(book);
     return (<div className="book">
       <img src={book.imageLinks.thumbnail} alt={book.title}/>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
+        {showStatus && shelf === 'current' && (<p>You are currently reading this book</p>)}
+        {showStatus && shelf === 'want' && (<p>You want to read this book</p>)}
+        {showStatus && shelf === 'read' && (<p>You have read this book</p>)}
       <div className="book-shelf-changer">
         <br/>Move to ...
-        <br/>
-        <a href="/" onClick={this.onChange} data-shelf='want'>Want to Read</a>
-        | 
-        <a href="/" onClick={this.onChange} data-shelf='read'>Read</a>
-        <br/>
-        <a href="/" onClick={this.onChange} data-shelf='current'>Currently Reading</a>
-        | {this.props.showNone && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
+        <br/> {shelf !== 'want' && (<a href="/" onClick={this.onChange} data-shelf='want'>Want to Read</a>)}
+        {shelf !== 'read' && (<a href="/" onClick={this.onChange} data-shelf='read'>Read</a>)}
+        {shelf !== 'current' && (<a href="/" onClick={this.onChange} data-shelf='want'>Currently Reading</a>)}
+        {shelf !== null && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
       </div>
     </div>)
   }

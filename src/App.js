@@ -10,6 +10,13 @@ class BooksApp extends Component {
     books: []
   }
 
+  getShelf = (bookToSearch) => {
+    let filtered = this.state.books.filter(book => book.id === bookToSearch.id);
+    return filtered.length
+      ? filtered[0].shelf
+      : null;
+  }
+
   updateBook = (bookToUpdate, shelf) => {
     this.setState((prev) => {
       // Search for the book to be updated within the state
@@ -56,8 +63,8 @@ class BooksApp extends Component {
 
   render() {
     return (<div className="root">
-      <Route exact path='/' render={() => (<Main books={this.state.books} updateBook={this.updateBook}/>)}/>
-      <Route path='/search' render={() => (<SearchPage updateBook={this.updateBook}/>)}/>
+      <Route exact path='/' render={() => (<Main books={this.state.books} updateBook={this.updateBook} getShelf={this.getShelf}/>)}/>
+      <Route path='/search' render={() => (<SearchPage updateBook={this.updateBook} getShelf={this.getShelf}/>)}/>
     </div>)
   }
 }
