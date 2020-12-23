@@ -120,7 +120,14 @@ body {
 .book {
   position: relative;
   width: 159px;
+  margin-bottom: 50px;
   text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
 }
 
 .book:hover {
@@ -128,26 +135,10 @@ body {
 }
 
 .book-title {
-  //styleName: Body;
-  font-family: Roboto;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0em;
-  text-align: center;
   color: #005662;
 }
 
 .book-authors {
-  //styleName: Body;
-  font-family: Roboto;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0em;
-  text-align: center;
   color: #4fb3bf;
 }
 
@@ -163,20 +154,8 @@ body {
   box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-.book-shelf-changer {
-  display: inline;
-  position: absolute;
-  right: -5px;
-  bottom: -5px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #005662;
-  background-image: url('./icons/arrow-drop-down.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20px;
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+.book-shelf-changer a {
+  color: #4fb3bf;
 }
 
 .book .book-shelf-changer {
@@ -185,4 +164,11 @@ body {
 
 .book:hover .book-shelf-changer {
   display: inline;
+}
+
+.book-shelf-changer select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }

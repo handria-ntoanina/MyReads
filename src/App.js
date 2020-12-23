@@ -14,33 +14,44 @@ class BooksApp extends Component {
     this.setState((prev) => {
       // Search for the book to be updated within the state
       let filtered = prev.books.filter(book => book.id === bookToUpdate.id);
-      let book = filtered
+      let book = filtered.length
         ? filtered[0]
         : bookToUpdate;
 
       // if the book was not found / filtered is empty, then add that book to the list known by our state
-      if (!filtered) {
+      if (!filtered.length) {
         prev.books.push(bookToUpdate);
       }
 
+      book.shelf = shelf;
       // if the shelf is null then remove that book from our component
-      if (shelf === null)
-        prev.books.pop(book)
-      else
-        book.shelf = shelf;
+      prev.books = prev.books.filter(book => book.shelf !== null)
 
       // save our books in the localStorage of our browser so that it can be retrieved later after refreshing
-      localStorage.setItem("books", prev.books);
+      this.storeBooks(prev.books);
       return {books: prev.books}
     })
   }
 
+  storeBooks = (books) => {
+    const prepared = this.state.books.map(book => {
+      let o = Object();
+      o.imageLinks = Object();
+      o.imageLinks.thumbnail = book.imageLinks.thumbnail;
+      o.title = book.title;
+      o.authors = book.authors;
+      o.shelf = book.shelf;
+      o.id = book.id;
+      return o;
+    });
+    localStorage.setItem("books", JSON.stringify(prepared));
+  }
+
   componentDidMount() {
-    this.setState({
-      books: localStorage.getItem("books")
-        ? localStorage.getItem("books")
-        : []
-    })
+    const books = localStorage.getItem("books")
+      ? JSON.parse(localStorage.getItem("books"))
+      : [];
+    this.setState({books: books})
   }
 
   render() {
