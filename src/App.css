@@ -159,11 +159,12 @@ body {
 }
 
 .book .book-shelf-changer {
-  display: none;
+  visibility: hidden;
 }
 
 .book:hover .book-shelf-changer {
-  display: inline;
+  /* display: inline; */
+  visibility: visible;
 }
 
 .book-shelf-changer select {

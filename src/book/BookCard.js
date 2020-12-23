@@ -29,11 +29,14 @@ class BookCard extends Component {
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
       <div className="book-shelf-changer">
-        <br/>Move to ... <br/>
-      <a href="/" onClick={this.onChange} data-shelf='current'>Currently Reading</a> |
-        <a href="/" onClick={this.onChange} data-shelf='want'>Want to Read</a> |
-        <a href="/" onClick={this.onChange} data-shelf='read'>Read</a> |
-        {this.props.showNone && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
+        <br/>Move to ...
+        <br/>
+        <a href="/" onClick={this.onChange} data-shelf='want'>Want to Read</a>
+        | 
+        <a href="/" onClick={this.onChange} data-shelf='read'>Read</a>
+        <br/>
+        <a href="/" onClick={this.onChange} data-shelf='current'>Currently Reading</a>
+        | {this.props.showNone && (<a href="/" onClick={this.onChange} data-shelf='none'>None</a>)}
       </div>
     </div>)
   }
