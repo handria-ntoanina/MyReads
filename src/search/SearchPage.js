@@ -17,8 +17,10 @@ class SearchPage extends Component {
 
   updateCriteria = (criteria) => {
     this.setState({criteria: criteria})
-    if (criteria.trim() === '')
+    if (criteria.trim() === '') {
+      this.setState({result: []});
       return;
+    }
     BooksAPI.search(criteria).then((books) => {
       /*When the input is fast-erased by the user, setting an empty result will come before
         the promise is done. Thus, the result of a previous query will be rendered after erasing the current result
